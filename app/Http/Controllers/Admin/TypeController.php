@@ -41,16 +41,18 @@ class TypeController extends Controller
     {
         // richiamo la funzione per validare i dati prima di inviarli al db
         $this->validation($request);
-
+        // richiamo tutti i dati presenti nel form
         $formData = $request->all();
-
+        // creo il nuovo record per la tabella Type
         $newType = new Type();
+        // popolo TUTTI i campi della tabella tranne lo slug che creerò con il nome
         $newType->name = $formData['name'];
         $newType->slug = Str::slug($formData['name'], '-');
         $newType->description = $formData['description'];
-
+        // salvo il record
         $newType->save();
 
+        // faccio il redirect alla pagina che mostra la singola tipologia nel dettaglio
         return redirect()->route('admin.types.show', $newType);
     }
 
@@ -62,6 +64,7 @@ class TypeController extends Controller
      */
     public function show(Type $type)
     {
+        // passo alla rotta show (tipologia nel dettaglio) il record di riferimento
         return view('admin.types.show', compact('type'));
     }
 
@@ -73,6 +76,7 @@ class TypeController extends Controller
      */
     public function edit(Type $type)
     {
+      // passo alla rotta edit (modifica della singola tipologia) il record di riferimento
       return view('admin.types.edit', compact('type'));
     }
 

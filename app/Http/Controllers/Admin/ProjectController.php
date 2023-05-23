@@ -29,6 +29,8 @@ class ProjectController extends Controller
      */
     public function create()
     {
+        //per fare la scelta della tipologia in fase di creazione devo passare alla rotta
+        // tutte le possibili tipologie che ho nella tabella Type
         $types = Type::all();
         return view('admin.projects.create', compact('types'));
     }
@@ -44,19 +46,25 @@ class ProjectController extends Controller
         // richiamo la funzione per validare i dati prima di inviarli al db
         $this->validation($request);
 
+        // leggo tutti i dati del form presenti nella request e mi creo un oggetto
         $formData = $request->all();
-
+        // creo un nuovo record del modello Project
         $newProject = new Project();
+        // popolo TUTTI i campi presenti in Project il nuovo record 
+        // con i dati presenti nell'oggetto formData
         $newProject->title = $formData['title'];
         $newProject->content = $formData['content'];
+        // lo slug non viene richiesto in input ma viene calcolato sulla base del titolo che passa dal form
         $newProject->slug = Str::slug($formData['title'], '-');
         $newProject->thumb = $formData['thumb'];
         $newProject->languages = $formData['languages'];
+        // gli passo anche il type_id che proviene dalla select dentro al form 
         $newProject->type_id = $formData['type_id'];
         $newProject->repo = $formData['repo'];
-
+        // salvo il record
         $newProject->save();
 
+        // faccio un redirect alla pagina di show del nuovo record creato, passandogli il record come parametro
         return redirect()->route('admin.projects.show', $newProject);
     }
 
@@ -68,6 +76,7 @@ class ProjectController extends Controller
      */
     public function show(Project $project)
     {
+        // per mostrare il singolo progetto passo come parametro il $project
         return view('admin.projects.show', compact('project'));
     }
 
@@ -79,7 +88,10 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
+        //per fare la scelta della tipologia in fase di modifica del singolo progetto, devo passare alla rotta
+        // tutte le possibili tipologie che ho nella tabella Type
         $types = Type::all();
+        // passo alla rotta edit sia il singolo progetto che tutte le tipologie disponibili per fare la scelta
         return view('admin.projects.edit', compact('project', 'types'));
     }
 
@@ -96,8 +108,10 @@ class ProjectController extends Controller
         $this->validation($request);
         // memorizzo i dati del form
         $formData = $request->all();
-        // aggiorno i dati 
+        // aggiorno i dati con la proprietà fillable definita nel Model
+        // tranne per lo slug che creerò sulla base del titolo del progetto
         $formData['slug'] = Str::slug($formData['title'], '-');
+        // funzione update per aggiornare i dati con i nuovi presenti nel formData (quindi dal form)
         $project->update($formData);
         // salvo il record
         $project->save();
