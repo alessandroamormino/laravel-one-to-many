@@ -107,7 +107,11 @@ class TypeController extends Controller
      */
     public function destroy(Type $type)
     {
-        //
+      //cancello il progetto
+      $type->delete();
+
+      //faccil il redirect alla pagina con tutti i progetti 
+      return redirect()->route('admin.types.index');
     }
 
     // creo una funzione che mi gestisca gli errori nei form
