@@ -14,6 +14,16 @@ body{
   font-family: 'JetBrains Mono', monospace;
 }
 
+.explorer{
+  padding: 1em;
+  width: 15vw;
+  color: #fff;
+  background-color: #1A1D2A;
+  .files{
+    padding: .5em;
+  }
+}
+
 // Active links in nav
 a._active svg{
   fill: #fff;
