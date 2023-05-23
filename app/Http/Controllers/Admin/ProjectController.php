@@ -79,7 +79,8 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-        return view('admin.projects.edit', compact('project'));
+        $types = Type::all();
+        return view('admin.projects.edit', compact('project', 'types'));
     }
 
     /**
@@ -131,6 +132,7 @@ class ProjectController extends Controller
             'title' => 'required|max:255|min:5',
             'content' => 'required|min:10',
             'thumb' => 'required',    
+            'type_id' => 'nullable|exists:types,id',
             'languages' => 'required|min:2',
             'repo' => 'required',
         ], [
@@ -141,6 +143,7 @@ class ProjectController extends Controller
             'content.required' => "E' necessario inserire la descrizione",
             'content.min' => "La descrizione dev'essere di almeno :min caratteri",
             'thumb.required' => "E' necessario inserire un'immagine di copertina",
+            'type_id.exists' => 'La tipologia deve essere presente',
             'languages.required' => "E' necessario inserire almeno un linguaggio utilizzato",
             'languages.min' => "Devi inserire almeno 2 caratteri",
             'repo.required' => "E' necessario inserire la repository",

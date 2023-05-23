@@ -51,6 +51,22 @@
         </div>
       @enderror
     </div>
+
+    <div class="row mb-3">
+      <label for="type_id">Tipologia</label>
+      <select name="type_id" class="form-select @error('type_id') is-invalid @enderror" type="text" id="type_id" value="{{old('type_id')}}">
+        <option value="">Nessuna</option>
+        @foreach($types as $type)
+          <option value="{{$type->id}}" {{$type->id == old('type_id', $project->type_id) ? 'selected' : ''}}>{{$type->name}}</option>
+        @endforeach
+      </select>
+      {{-- espongo messaggio di errore --}}
+      @error('type_id')
+        <div class="invalid-feedback">
+          {{$message}}
+        </div>
+      @enderror
+    </div>
   
     <div class="row mb-3">
       <label for="repo">Repository</label>
