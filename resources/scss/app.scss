@@ -28,6 +28,41 @@ body{
   padding: 3em 0;
 }
 
+a{
+  color: #fff;
+  text-decoration: none;
+  &:hover{
+    color: #fff;
+  }
+}
+
+._card{
+  display: flex;
+  flex-flow: column;
+  width: 400px;
+
+  border: 2px solid #6B737D;
+  border-radius: 10px;
+
+  transition: transform .4s ease;
+  &:hover{
+    transform: scale(1.05);
+  }
+  h3{
+    text-align: center;
+    padding: .5em;
+    border-bottom: 1px solid #6B737D;
+  }
+  img{
+    width: 100%;
+    margin: 1em 0;
+    padding: 1em;
+  }
+  .text{
+    padding: 1em;
+  }
+}
+
 // Active links in nav
 a._active svg{
   fill: #fff;
@@ -173,6 +208,13 @@ main.admin{
   }
   .modal{
     color: #000;
+  }
+  ._container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5em;
+    padding: 3em;
   }
 }
 
