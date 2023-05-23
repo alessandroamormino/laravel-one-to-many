@@ -4,10 +4,10 @@
     <span>Portfolio</span>
     <div class="files">
       <div class="projects">
-        <a href="#">projects</a>
+        <a href="{{route('admin.projects.index')}}">projects</a>
       </div>
       <div class="types">
-        <a href="#">types</a>
+        <a href="{{route('admin.types.index')}}">types</a>
       </div>
     </div>
   </div>

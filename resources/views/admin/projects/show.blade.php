@@ -37,6 +37,7 @@
 
 <div class="main">
   <h1>{{$project->title}}</h1>
+  <h6>Categoria: {{$project->type?->name}}</h6>
   <hr>
   <p>
     Descrizione: {{$project->content}}

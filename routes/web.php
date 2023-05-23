@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProjectController;
+use App\Http\Controllers\Admin\TypeController;
 use App\Http\Controllers\Guest\PageController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -35,8 +36,12 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
     // inserisco le rotte che avranno il prefisso 'admin' nell'URI e nome della rotta preceduta da 'admin'
     Route::resource('projects', ProjectController::class)->parameters(['projects'=>'project:slug']);
 
+    // richiamo il typecontroller 
+    Route::resource('types', TypeController::class)->parameters(['types'=>'type:slug']);
+
     // richiamo la pagina dashboard della cartella admin
     Route::get('/', [DashboardController::class, 'home'])->name('dashboard.home');
+
 });
 
 require __DIR__.'/auth.php';
