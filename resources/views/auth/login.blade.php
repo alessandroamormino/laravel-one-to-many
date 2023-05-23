@@ -1,7 +1,7 @@
 @extends('layouts/main')
 
 @section('content')
-<main class="login">
+<div class="login">
   <div class="container">
     <div class="card-dark">
       <div class="card-header">Login</div>
@@ -57,5 +57,5 @@
       </div>
     </div>
   </div>
-</main>
+</div>
 @endsection

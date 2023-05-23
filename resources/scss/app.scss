@@ -219,14 +219,14 @@ main.admin{
 }
 
 // Login page
-main.login{
+.login{
   color: #000;
   .container{
     display: flex;
     justify-content: center;
     align-items: center;
     // flex
-    height: 100vh;
+    height: calc(100vh - 4em);
     .card-dark{
       background-color: #1B1D2A;
       color: #abb1b8;
