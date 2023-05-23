@@ -68,11 +68,11 @@ main{
   }
   color: #fff;
   // tolgo la dimensione della sidebar dalla larghezza del main
-  width: calc(100% - 70px);
+  width: calc(100% - 70px - 15vw);
   padding: 2em;
   overflow: auto;
   .container-centered{
-    width: calc(100% - 70px - 2em);
+    width: calc(100% - 70px - 2em - 15vw);
     display: flex;
     align-items: center;
     justify-content: space-between;

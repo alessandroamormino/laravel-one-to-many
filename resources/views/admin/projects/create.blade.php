@@ -2,7 +2,7 @@
 
 @section('content')
 <h3>Aggiungi un Progetto</h3>
-<div class="container ms-5 mt-5">
+<div class="container p-5">
   <form action="{{route('admin.projects.store')}}" method="POST">
     @csrf
   
@@ -43,6 +43,22 @@
       <input class="form-control @error('languages') is-invalid @enderror" type="text" id="languages" name="languages" value="{{old('languages')}}">
       {{-- espongo messaggio di errore --}}
       @error('languages')
+        <div class="invalid-feedback">
+          {{$message}}
+        </div>
+      @enderror
+    </div>
+
+    <div class="row mb-3">
+      <label for="type_id">Tipologia</label>
+      <select name="type_id" class="form-select @error('type_id') is-invalid @enderror" type="text" id="type_id" value="{{old('type_id')}}">
+        <option value="">Nessuna</option>
+        @foreach($types as $type)
+          <option value="{{$type->id}}" {{$type->id == old('type_id') ? 'selected' : ''}}>{{$type->name}}</option>
+        @endforeach
+      </select>
+      {{-- espongo messaggio di errore --}}
+      @error('type_id')
         <div class="invalid-feedback">
           {{$message}}
         </div>

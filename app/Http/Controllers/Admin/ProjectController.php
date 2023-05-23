@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Project;
+use App\Models\Type;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
@@ -28,7 +29,8 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        return view('admin.projects.create');
+        $types = Type::all();
+        return view('admin.projects.create', compact('types'));
     }
 
     /**
@@ -50,6 +52,7 @@ class ProjectController extends Controller
         $newProject->slug = Str::slug($formData['title'], '-');
         $newProject->thumb = $formData['thumb'];
         $newProject->languages = $formData['languages'];
+        $newProject->type_id = $formData['type_id'];
         $newProject->repo = $formData['repo'];
 
         $newProject->save();
@@ -127,7 +130,7 @@ class ProjectController extends Controller
             // inserisco le mie regole
             'title' => 'required|max:255|min:5',
             'content' => 'required|min:10',
-            'thumb' => 'required',
+            'thumb' => 'required',    
             'languages' => 'required|min:2',
             'repo' => 'required',
         ], [

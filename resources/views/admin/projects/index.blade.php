@@ -11,6 +11,7 @@
     <th>Slug</th>
     <th>Immagine</th>
     <th>Linguaggi</th>
+    <th>Tipologia</th>
     <th>Repo</th>
     <th>Dettaglio</th>
   </thead>
@@ -24,6 +25,7 @@
       <td>{{$project->slug}}</td>
       <td>{{$project->thumb}}</td>
       <td>{{$project->languages}}</td>
+      <th>{{$project->type?->name}}</th>
       <td>{{$project->repo}}</td>
       <td><a href="{{route('admin.projects.show', $project->slug)}}"><i class="fa-solid fa-magnifying-glass"></i></a></td>
     </tr>
