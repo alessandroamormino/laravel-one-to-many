@@ -126,10 +126,11 @@ class TypeController extends Controller
         // richiamo il Validator
         $validator = Validator::make($formData, [
             // inserisco le mie regole
-            'name' => 'required|max:255|min:5',
+            'name' => 'unique:App\Models\Type,name|required|max:255|min:5',
             'description' => 'required|min:10',
         ], [
             // inserisco i messaggi personalizzati per ogni tipologia di errore per ogni campo
+            'name.unique' => "E' già presente una tipologia con questo nome",
             'name.required' => "E' necessario inserire il nome",
             'name.max' => "Il nome non dev'essere superiore a :max caratteri",
             'name.min' => "Il nome dev'essere di almeno :min caratteri",

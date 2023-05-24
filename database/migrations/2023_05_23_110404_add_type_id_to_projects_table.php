@@ -17,8 +17,11 @@ return new class extends Migration
             $table->unsignedBigInteger('type_id')->nullable()->after('id');
 
             $table->foreign('type_id')
+                //fa riferimento a quale campo? 
                 ->references('id')
+                // di quale tabella?
                 ->on('types')
+                // in caso venga eliminato il record su types, setta a nullo la FK su projects
                 ->onDelete('set null');
         });
     }
